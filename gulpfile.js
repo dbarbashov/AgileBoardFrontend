@@ -4,6 +4,8 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var webpack = require('gulp-webpack');
 var cssmin = require('gulp-minify-css');
+var brfs = require('gulp-brfs');
+
 var del = require('del');
 
 var paths = {
@@ -24,7 +26,8 @@ gulp.task('scripts', ['clean'], function() {
     // with sourcemaps all the way down
     return gulp.src(paths.scripts)
         .pipe(sourcemaps.init())
-        .pipe(webpack())
+        .pipe(brfs())
+        .pipe(webpack(require('./webpack.config')))
         .pipe(uglify())
         .pipe(concat('all.min.js'))
         .pipe(sourcemaps.write())

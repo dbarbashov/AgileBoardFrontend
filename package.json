@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.9",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-brfs": "^0.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-minify-css": "^1.2.4",
     "gulp-sourcemaps": "^2.6.4",
@@ -18,6 +20,7 @@
     "gulp-webpack": "^1.5.0",
     "jquery": "^3.3.1",
     "request": "^2.85.0",
+    "transform-loader": "^0.2.4",
     "webpack": "^4.1.1"
   }
 }
