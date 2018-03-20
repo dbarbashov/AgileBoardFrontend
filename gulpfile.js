@@ -31,12 +31,12 @@ gulp.task('scripts', ['clean'], function() {
         .pipe(uglify())
         .pipe(concat('all.min.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build'));
 });
 
 gulp.task('html', ['clean'], function() {
     return gulp.src(paths.html)
-        .pipe(gulp.dest('build/html'));
+        .pipe(gulp.dest('build'));
 });
 
 gulp.task('css', ['clean'], function () {
@@ -45,7 +45,7 @@ gulp.task('css', ['clean'], function () {
         .pipe(cssmin())
         .pipe(concat('all.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/css'));
+        .pipe(gulp.dest('build'));
 });
 
 // Rerun the task when a file changes
