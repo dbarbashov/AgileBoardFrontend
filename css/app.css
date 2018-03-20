@@ -1,0 +1,15 @@
+.main-menu {
+    width: 200px;
+}
+
+.project-columns {
+    overflow-x: scroll;
+}
+
+.project-column {
+    width: 256px;
+}
+
+.project-ticket {
+    margin-bottom: 16px;
+}

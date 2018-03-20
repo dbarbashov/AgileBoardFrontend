@@ -1,7 +1,5 @@
-var angular = require('angular');
-var fs = require('fs');
-
-var agileBoard = angular.module('AgileBoard', []);
-agileBoard.component('home', {
-    template: fs.readFileSync('./templates/home.html')
-});
+var agileBoard = require('./js/AgileBoardModule');
+var header = require('./js/Header');
+var menu = require('./js/Menu');
+var project = require('./js/Project');
+var projectTicket = require('./js/ProjectTicket');

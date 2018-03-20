@@ -1,0 +1,13 @@
+<aside class="menu">
+    <p class="menu-label">
+        Projects
+    </p>
+    <ul class="menu-list">
+        <li ng-repeat="project in Projects">
+            <a class="{{ project.ProjectId == ActiveProject.ProjectId ? 'is-active' : ''}}"
+                ng-click="$ctrl.SetActiveProject(project)">
+                {{ project.ProjectName }}
+            </a>
+        </li>
+    </ul>
+</aside>

@@ -1,0 +1,18 @@
+<div class="hero is-small">
+    <div class="hero-body">
+        <div class="levels">
+            <h1 class="title level-item">
+                {{ $ctrl.project.ProjectName }}
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="columns project-columns is-mobile">
+    <div class="column is-narrow project-column" ng-repeat="column in Columns">
+        <h1 class="subtitle is-6">
+            {{ column.ColumnName }}
+        </h1>
+        <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
+        </ab-project-ticket>
+    </div>
+</div>
