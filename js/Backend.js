@@ -27,14 +27,22 @@ module.exports = {
     GetTicketsByColumn: function(columnId) {
         return $q(function(resolve, reject) {
             var tickets = [
-                { TicketId: "1", TicketTitle: "Ticket 1", TicketDescription: "Lorem ipsum set dolor amet",
+                { TicketId: columnId + "1", TicketTitle: "Ticket 1", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: null,
                     StartDate: (new Date())*1 - 60*60*24*1000, EndDate: (new Date)*1 + 60*60*24*1000},
-                { TicketId: "2", TicketTitle: "Ticket 2", TicketDescription: "Lorem ipsum set dolor amet",
+                { TicketId: columnId + "2", TicketTitle: "Ticket 2", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: "https://bulma.io/images/placeholders/1280x960.png",
+                    StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000},
+                { TicketId: columnId + "3", TicketTitle: "Ticket 3", TicketDescription: "Раз два три четыре пять",
+                    TicketPic: null,
                     StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000}
             ];
             resolve(tickets);
+        });
+    },
+    MoveTicketToColumn: function(fromColumnId, toColumnId, ticketId, index) {
+        return $q(function(resolve, reject) {
+            resolve(true);
         });
     }
 };

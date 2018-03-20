@@ -16,7 +16,6 @@ function MenuController($rootScope, $scope) {
     this.SetActiveProject = function (project) {
         $rootScope.ActiveProject = project;
         $scope.ActiveProject = project;
-        $scope.$apply();
     }
 }
 

@@ -1,4 +1,5 @@
-<div class="card project-ticket">
+<div class="card project-ticket disable-selection"
+    dnd-draggable="$ctrl.ticket">
     <div class="card-image" ng-if="$ctrl.ticket.TicketPic !== null">
         <figure class="image is-2by1">
             <img src="{{ $ctrl.ticket.TicketPic }}">

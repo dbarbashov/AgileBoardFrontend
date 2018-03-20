@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.9",
+    "angular-drag-and-drop-lists": "^2.1.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-brfs": "^0.1.0",

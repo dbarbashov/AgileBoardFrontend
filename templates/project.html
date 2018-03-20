@@ -9,10 +9,27 @@
 </div>
 <div class="columns project-columns is-mobile">
     <div class="column is-narrow project-column" ng-repeat="column in Columns">
+        <div>
+            <h1 class="subtitle is-6 disable-selection"
+                ng-if="EditingColumn !== column.ColumnId"
+                ng-dblclick="$ctrl.EnableColumnNameEditing(column)">
+                {{ column.ColumnName }}
+            </h1>
+            <input class="input"
+                   ng-if="EditingColumn === column.ColumnId"
+                   ng-value="column.ColumnName"/>
+        </div>
+
+        <div dnd-list=""
+             dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
+            <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
+            </ab-project-ticket>
+        </div>
+    </div>
+    <div class="column is-narrow project-column has-text-centered">
         <h1 class="subtitle is-6">
-            {{ column.ColumnName }}
+            Add new column
         </h1>
-        <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
-        </ab-project-ticket>
+        <div class="button is-primary">Add</div>
     </div>
 </div>
