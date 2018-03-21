@@ -42,12 +42,12 @@ module.exports = {
     },
     SetColumnName: function(columnId, columnName) {
         return $q(function(resolve, reject) {
-            resolve(false);
+            resolve(true);
         });
     },
     MoveTicketToColumn: function(fromColumnId, toColumnId, ticketId, index) {
         return $q(function(resolve, reject) {
-            resolve(false);
+            resolve(true);
         });
     }
 };
