@@ -24,3 +24,7 @@
     user-select: none;
     outline: 0;
 }
+
+.image {
+    pointer-events: none;
+}

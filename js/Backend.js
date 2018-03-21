@@ -40,9 +40,14 @@ module.exports = {
             resolve(tickets);
         });
     },
+    SetColumnName: function(columnId, columnName) {
+        return $q(function(resolve, reject) {
+            resolve(false);
+        });
+    },
     MoveTicketToColumn: function(fromColumnId, toColumnId, ticketId, index) {
         return $q(function(resolve, reject) {
-            resolve(true);
+            resolve(false);
         });
     }
 };

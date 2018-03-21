@@ -3,8 +3,11 @@ var Backend = require('./Backend');
 var fs = require('fs');
 
 function ProjectController($scope) {
+    var that = this;
+
     $scope.Columns = {};
     $scope.EditingColumn = null;
+    $scope.EditingColumnName = null;
     // Индекс TicketId -> ColumnId
     var ColumnIdByTicketId = {};
 
@@ -41,8 +44,8 @@ function ProjectController($scope) {
     this.OnTicketDrop = function(toColumn, index, ticket) {
         var fromColumn = $scope.Columns[ColumnIdByTicketId[ticket.TicketId]];
 
-        var fromColumnTickets = fromColumn.Tickets;
-        var toColumnTickets = toColumn.Tickets;
+        var fromColumnTickets = fromColumn.Tickets.slice();
+        var toColumnTickets = toColumn.Tickets.slice();
 
         // Перетащим карточку в другую колонку на фронте, чтобы быстро все отобразить
         fromColumn.Tickets.forEach(function(t, idx) {
@@ -60,21 +63,39 @@ function ProjectController($scope) {
             function(res) {
                 if (res !== true) {
                     // В случае, если бекенд отказывает в таком перетаскивании, откатим изменения на фронте
-                    $scope.Columns[fromColumn].Tickets = fromColumnTickets;
-                    $scope.Columns[toColumn].Tickets = toColumnTickets;
+                    $scope.Columns[fromColumn.ColumnId].Tickets = fromColumnTickets;
+                    $scope.Columns[toColumn.ColumnId].Tickets = toColumnTickets;
                     ColumnIdByTicketId[ticket.TicketId] = fromColumn.ColumnId;
+                    $scope.$apply();
                 }
             }
         );
     };
     this.EnableColumnNameEditing = function(column) {
         $scope.EditingColumn = column.ColumnId;
-        $scope.$apply();
+        $scope.EditingColumnName = column.ColumnName;
     };
+
     this.DisableColumnNameEditing = function() {
         $scope.EditingColumn = null;
-        $scope.$apply();
-    }
+        $scope.EditingColumnName = null;
+    };
+
+    this.SetColumnName = function(column, columnName) {
+        var oldColumnName = column.ColumnName;
+        column.ColumnName = columnName;
+
+        Backend.SetColumnName(column.ColumnId, columnName).then(
+            function(success) {
+                if (!success) {
+                    column.ColumnName = oldColumnName;
+                    $scope.$apply();
+                }
+            }
+        );
+
+        that.DisableColumnNameEditing();
+    };
 }
 
 module.exports =

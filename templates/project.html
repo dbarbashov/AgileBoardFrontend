@@ -15,11 +15,11 @@
                 ng-dblclick="$ctrl.EnableColumnNameEditing(column)">
                 {{ column.ColumnName }}
             </h1>
-            <input class="input"
+            <input class="input is-small is-primary is-rounded"
                    ng-if="EditingColumn === column.ColumnId"
-                   ng-value="column.ColumnName"/>
+                   ng-model="EditingColumnName"
+                   ng-keypress="$event.keyCode == 13 ? $ctrl.SetColumnName(column, EditingColumnName) : ''"/>
         </div>
-
         <div dnd-list=""
              dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
             <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
