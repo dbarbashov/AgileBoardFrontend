@@ -14,17 +14,21 @@
     height: 100%;
 }
 
-.project-ticket {
+.project-ticket-wrapper {
     cursor: pointer;
     margin-bottom: 16px;
 }
 
-.project-column-title {
-    padding-bottom: .5rem;
+.project-ticket-add-button {
+    width: 100%;
 }
 
 .project-column-title h1 {
     margin-bottom: .45rem;
+}
+
+aside.menu {
+    padding-top: .25rem;
 }
 
 .disable-selection {
@@ -39,4 +43,34 @@
 
 .image {
     pointer-events: none;
+}
+
+.is-size-6-5 {
+    font-size: .85rem !important;
+}
+
+.project-ticket:hover .ticket-title {
+    color: hsl(217, 71%, 53%);
+}
+
+.project-ticket .ticket-title {
+    font-weight: 400;
+    padding: .5rem;
+}
+
+li.dndPlaceholder {
+    height: 48px;
+}
+
+.project-ticket-wrapper .tags .tag:first-child {
+    border-bottom-left-radius: 0;
+}
+
+.project-ticket-wrapper .tags .tag:last-child {
+    border-bottom-right-radius: 0;
+}
+
+.project-ticket-wrapper .tag {
+    height: 1em;
+    flex-grow: 1;
 }

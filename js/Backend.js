@@ -27,7 +27,7 @@ module.exports = {
     GetTicketsByColumn: function(columnId) {
         return $q(function(resolve, reject) {
             var tickets = [
-                { TicketId: columnId + "1", TicketTitle: "Ticket 1", TicketDescription: "Lorem ipsum set dolor amet",
+                { TicketId: columnId + "1", TicketTitle: "Длинное название тикета очень длинное что прям не вмещается", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: null,
                     StartDate: (new Date())*1 - 60*60*24*1000, EndDate: (new Date)*1 + 60*60*24*1000},
                 { TicketId: columnId + "2", TicketTitle: "Ticket 2", TicketDescription: "Lorem ipsum set dolor amet",

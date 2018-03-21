@@ -1,21 +1,35 @@
-<div class="card project-ticket disable-selection"
-    dnd-draggable="$ctrl.ticket">
-    <div class="card-image" ng-if="$ctrl.ticket.TicketPic !== null">
-        <figure class="image is-2by1">
-            <img src="{{ $ctrl.ticket.TicketPic }}">
-        </figure>
-    </div>
-    <div class="card-content">
-        <div class="media">
-            <div class="media-content">
-                <p class="subtitle is-5">{{ $ctrl.ticket.TicketTitle }}</p>
-            </div>
+
+<div class="project-ticket-wrapper"
+     dnd-draggable="$ctrl.ticket">
+    <header class="card-tags-header">
+        <div class="tags has-addons">
+            <span class="tag is-danger is-rounded"></span>
+            <span class="tag is-warning is-rounded"></span>
+            <span class="tag is-success is-rounded"></span>
+            <span class="tag is-primary is-rounded"></span>
+            <span class="tag is-info is-rounded"></span>
+            <span class="tag is-link is-rounded"></span>
+            <span class="tag is-dark is-rounded"></span>
         </div>
-        <div class="content">
-            {{ $ctrl.ticket.TicketDescription }}
-            <br>
-            <!--TODO: datetime, due date-->
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </header>
+    <div class="card project-ticket disable-selection">
+        <header class="card-header">
+            <p class="card-header-title ticket-title is-size-6-5">
+                {{ $ctrl.ticket.TicketTitle }}
+            </p>
+        </header>
+        <div class="card-image" ng-if="$ctrl.ticket.TicketPic !== null">
+            <figure class="image is-2by1">
+                <img src="{{ $ctrl.ticket.TicketPic }}">
+            </figure>
+        </div>
+        <div class="card-footer">
+            <time class="card-footer-item is-size-6-5">
+                20 Mar 2018
+            </time>
+            <time class="card-footer-item is-size-6-5">
+                25 Mar 2018
+            </time>
         </div>
     </div>
 </div>

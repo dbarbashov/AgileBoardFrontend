@@ -30,6 +30,11 @@
                    ng-model="EditingColumnName"
                    ng-keypress="$event.keyCode == 13 ? $ctrl.SetColumnName(column, EditingColumnName) : ''"/>
         </div>
+        <div class="column">
+            <a class="button is-primary project-ticket-add-button">
+                Add ticket
+            </a>
+        </div>
         <div class="project-column-dnd-list"
              dnd-list=""
              dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
@@ -43,7 +48,7 @@
         </h1>
         <div class="button is-primary"
              ng-click="$ctrl.AddNewColumn($ctrl.project)">
-            Add
+            Add column
         </div>
     </div>
 </div>
