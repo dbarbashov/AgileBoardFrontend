@@ -6,6 +6,10 @@ function ProjectController($scope) {
     var that = this;
 
     $scope.Columns = {};
+
+    $scope.EditingProject = false;
+    $scope.EditingProjectName = null;
+
     $scope.EditingColumn = null;
     $scope.EditingColumnName = null;
     // Индекс TicketId -> ColumnId
@@ -95,6 +99,42 @@ function ProjectController($scope) {
         );
 
         that.DisableColumnNameEditing();
+    };
+
+    this.EnableProjectNameEditing = function(project) {
+        $scope.EditingProject = true;
+        $scope.EditingProjectName = project.ProjectName;
+    };
+
+    this.DisableProjectNameEditing = function() {
+        $scope.EditingProject = false;
+        $scope.EditingProjectName = null;
+    };
+
+    this.SetProjectName = function(project, projectName) {
+        var oldProjectName = project.ProjectName;
+        project.ProjectName = projectName;
+
+        Backend.SetProjectName(project.ProjectId, projectName).then(
+            function(success) {
+                if (!success) {
+                    project.ProjectName = oldProjectName;
+                    $scope.$apply()
+                }
+            }
+        );
+
+        that.DisableProjectNameEditing();
+    };
+
+    this.AddNewColumn = function(project) {
+        Backend.AddNewColumn(project.ProjectId).then(
+            function(column) {
+                $scope.Columns[column.ColumnId] = column;
+                column.Tickets = [];
+                $scope.$apply();
+            }
+        );
     };
 }
 

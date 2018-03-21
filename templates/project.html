@@ -1,15 +1,25 @@
 <div class="hero is-small">
     <div class="hero-body">
-        <div class="levels">
-            <h1 class="title level-item">
-                {{ $ctrl.project.ProjectName }}
-            </h1>
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column">
+                <h1 class="title level-item disable-selection"
+                    ng-if="!EditingProject"
+                    ng-dblclick="$ctrl.EnableProjectNameEditing($ctrl.project)">
+                    {{ $ctrl.project.ProjectName }}
+                </h1>
+                <input class="input level-item is-medium is-primary is-rounded"
+                       ng-if="EditingProject"
+                       ng-model="EditingProjectName"
+                       ng-keypress="$event.keyCode == 13 ? $ctrl.SetProjectName($ctrl.project, EditingProjectName) : ''" />
+            </div>
+            <div class="column"></div>
         </div>
     </div>
 </div>
 <div class="columns project-columns is-mobile">
     <div class="column is-narrow project-column" ng-repeat="column in Columns">
-        <div>
+        <div class="project-column-title">
             <h1 class="subtitle is-6 disable-selection"
                 ng-if="EditingColumn !== column.ColumnId"
                 ng-dblclick="$ctrl.EnableColumnNameEditing(column)">
@@ -20,7 +30,8 @@
                    ng-model="EditingColumnName"
                    ng-keypress="$event.keyCode == 13 ? $ctrl.SetColumnName(column, EditingColumnName) : ''"/>
         </div>
-        <div dnd-list=""
+        <div class="project-column-dnd-list"
+             dnd-list=""
              dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
             <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
             </ab-project-ticket>
@@ -30,6 +41,9 @@
         <h1 class="subtitle is-6">
             Add new column
         </h1>
-        <div class="button is-primary">Add</div>
+        <div class="button is-primary"
+             ng-click="$ctrl.AddNewColumn($ctrl.project)">
+            Add
+        </div>
     </div>
 </div>

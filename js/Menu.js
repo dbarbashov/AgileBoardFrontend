@@ -16,7 +16,16 @@ function MenuController($rootScope, $scope) {
     this.SetActiveProject = function (project) {
         $rootScope.ActiveProject = project;
         $scope.ActiveProject = project;
-    }
+    };
+
+    this.AddNewProject = function() {
+        Backend.AddNewProject().then(
+            function(project) {
+                $scope.Projects.push(project);
+                $scope.$apply();
+            }
+        );
+    };
 }
 
 module.exports =

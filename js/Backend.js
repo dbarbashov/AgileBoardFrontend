@@ -45,9 +45,30 @@ module.exports = {
             resolve(true);
         });
     },
+    SetProjectName: function(projectId, projectName) {
+        return $q(function(resolve, reject) {
+            resolve(true);
+        });
+    },
     MoveTicketToColumn: function(fromColumnId, toColumnId, ticketId, index) {
         return $q(function(resolve, reject) {
             resolve(true);
+        });
+    },
+    AddNewColumn: function(projectId) {
+        return $q(function(resolve, reject) {
+            resolve({
+                ColumnId: projectId + Math.random().toString(),
+                ColumnName: "New Column"
+            });
+        });
+    },
+    AddNewProject: function() {
+        return $q(function (resolve, reject) {
+            resolve({
+                ProjectId: Math.random().toString(),
+                ProjectName: "New Project"
+            });
         });
     }
 };

@@ -3,16 +3,28 @@
 }
 
 .project-columns {
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
 }
 
 .project-column {
     width: 256px;
 }
 
+.project-column-dnd-list {
+    height: 100%;
+}
+
 .project-ticket {
     cursor: pointer;
     margin-bottom: 16px;
+}
+
+.project-column-title {
+    padding-bottom: .5rem;
+}
+
+.project-column-title h1 {
+    margin-bottom: .45rem;
 }
 
 .disable-selection {
