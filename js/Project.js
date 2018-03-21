@@ -59,7 +59,7 @@ function ProjectController($scope) {
             }
         });
 
-        toColumn.Tickets.splice(index-1, 0, ticket);
+        toColumn.Tickets.splice(index, 0, ticket);
         ColumnIdByTicketId[ticket.TicketId] = toColumn.ColumnId;
 
         // Отправим запрос на перенос на бекенде
