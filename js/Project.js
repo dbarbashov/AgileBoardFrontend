@@ -2,7 +2,7 @@ var agileBoard = require('./AgileBoardModule');
 var Backend = require('./Backend');
 var fs = require('fs');
 
-function ProjectController($scope) {
+function ProjectController($scope, TicketModal) {
     var that = this;
 
     $scope.Columns = {};
@@ -12,6 +12,9 @@ function ProjectController($scope) {
 
     $scope.EditingColumn = null;
     $scope.EditingColumnName = null;
+
+    $scope.TicketModal = TicketModal;
+
     // Индекс TicketId -> ColumnId
     var ColumnIdByTicketId = {};
 
@@ -51,13 +54,21 @@ function ProjectController($scope) {
         var fromColumnTickets = fromColumn.Tickets.slice();
         var toColumnTickets = toColumn.Tickets.slice();
 
+        var prevIdx = 0;
         // Перетащим карточку в другую колонку на фронте, чтобы быстро все отобразить
         fromColumn.Tickets.forEach(function(t, idx) {
             if (ticket.TicketId === t.TicketId) {
                 fromColumn.Tickets.splice(idx, 1);
+                prevIdx = idx;
                 return false;
             }
         });
+
+        if (fromColumn.ColumnId === toColumn.ColumnId) {
+            if (prevIdx < index) {
+                index--;
+            }
+        }
 
         toColumn.Tickets.splice(index, 0, ticket);
         ColumnIdByTicketId[ticket.TicketId] = toColumn.ColumnId;
@@ -140,7 +151,7 @@ function ProjectController($scope) {
 
 module.exports =
     agileBoard.component('abProject', {
-        controller: ['$scope', ProjectController],
+        controller: ['$scope', 'TicketModal', ProjectController],
         bindings: {
             project: '='
         },

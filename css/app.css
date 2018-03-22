@@ -74,3 +74,48 @@ li.dndPlaceholder {
     height: 1em;
     flex-grow: 1;
 }
+
+#ticket-modal .modal-card {
+    width: 80%;
+}
+
+#ticket-modal .buttons {
+    margin-bottom: 0;
+}
+
+#ticket-modal .buttons .button {
+    margin-bottom: 0;
+}
+
+#ticket-modal .tag .delete {
+    margin-right: -.6rem;
+    margin-left: .2rem;
+}
+
+#ticket-modal .tags {
+    margin-bottom: 0;
+}
+
+#ticket-modal .tags .tag {
+    margin-bottom:  0;
+}
+
+.tag.is-pink {
+    background-color: #ff38b6;
+    color: #fff;
+}
+
+.tag.is-purple {
+    background-color: #9f38ff;
+    color: #fff;
+}
+
+.tag.is-orange {
+    background-color: #ff8538;
+    color: #fff;
+}
+
+.tag.is-grey {
+    background-color: #7e7e7e;
+    color: #fff;
+}

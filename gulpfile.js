@@ -11,7 +11,8 @@ var del = require('del');
 var paths = {
     scripts: ['main.js', 'js/**/*.js', 'js/*.js'],
     html: ['index.html'],
-    css: ['css/**/*.css', 'css/*.css']
+    css: ['css/**/*.css', 'css/*.css'],
+    fonts: ['webfonts/*']
 };
 
 // Not all tasks need to use streams
@@ -39,6 +40,11 @@ gulp.task('html', ['clean'], function() {
         .pipe(gulp.dest('build'));
 });
 
+gulp.task('fonts', ['clean'], function() {
+    return gulp.src(paths.fonts)
+        .pipe(gulp.dest('build/webfonts'));
+});
+
 gulp.task('css', ['clean'], function () {
     return gulp.src(paths.css)
         .pipe(sourcemaps.init())
@@ -56,4 +62,4 @@ gulp.task('watch', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['scripts', 'html', 'css']);
+gulp.task('default', ['scripts', 'html', 'css', 'fonts']);
