@@ -6,6 +6,8 @@ function MenuController($rootScope, $scope) {
     $scope.Projects = [];
     $scope.ActiveProject = null;
 
+    var that = this;
+
     Backend.GetProjects().then(
         function(projects) {
             $scope.Projects = projects;
@@ -22,6 +24,7 @@ function MenuController($rootScope, $scope) {
         Backend.AddNewProject().then(
             function(project) {
                 $scope.Projects.push(project);
+                that.SetActiveProject(project);
                 $scope.$apply();
             }
         );

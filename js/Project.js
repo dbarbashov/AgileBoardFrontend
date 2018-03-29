@@ -2,7 +2,7 @@ var agileBoard = require('./AgileBoardModule');
 var Backend = require('./Backend');
 var fs = require('fs');
 
-function ProjectController($scope, TicketModal) {
+function ProjectController($rootScope, $scope, TicketModal) {
     var that = this;
 
     $scope.Columns = {};
@@ -143,6 +143,7 @@ function ProjectController($scope, TicketModal) {
             function(column) {
                 $scope.Columns[column.ColumnId] = column;
                 column.Tickets = [];
+                that.EnableColumnNameEditing(column);
                 $scope.$apply();
             }
         );
@@ -151,7 +152,7 @@ function ProjectController($scope, TicketModal) {
 
 module.exports =
     agileBoard.component('abProject', {
-        controller: ['$scope', 'TicketModal', ProjectController],
+        controller: ['$rootScope', '$scope', 'TicketModal', ProjectController],
         bindings: {
             project: '='
         },

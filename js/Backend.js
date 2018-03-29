@@ -29,13 +29,22 @@ module.exports = {
             var tickets = [
                 { TicketId: columnId + "1", TicketTitle: "Длинное название тикета очень длинное что прям не вмещается", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: null,
-                    StartDate: (new Date())*1 - 60*60*24*1000, EndDate: (new Date)*1 + 60*60*24*1000},
+                    StartDate: (new Date())*1 - 60*60*24*1000, EndDate: (new Date)*1 + 60*60*24*1000,
+                    Tags: [
+                        {TagId: '1', TagTitle: 'Важно', TagColor: 'danger'},
+                        {TagId: '2', TagTitle: 'Tag2', TagColor: 'warning'},
+                        {TagId: '3', TagTitle: 'Просто тег', TagColor: 'success'}
+                    ]},
                 { TicketId: columnId + "2", TicketTitle: "Ticket 2", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: "https://bulma.io/images/placeholders/1280x960.png",
-                    StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000},
+                    StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000,
+                    Tags: [
+                        {TagId: '3', TagTitle: 'Просто тег', TagColor: 'success'}
+                    ]},
                 { TicketId: columnId + "3", TicketTitle: "Ticket 3", TicketDescription: "Раз два три четыре пять",
                     TicketPic: null,
-                    StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000}
+                    StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000,
+                    Tags: []}
             ];
             resolve(tickets);
         });

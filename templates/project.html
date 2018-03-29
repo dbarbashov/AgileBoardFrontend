@@ -74,10 +74,10 @@
                             </span>
                         </a>
                         <a class="button is-outlined is-dark">
-                            Time from
+                            {{ TicketModal.Ticket.StartDate | datetime }}
                         </a>
                         <a class="button is-outlined is-dark">
-                            Time to
+                            {{ TicketModal.Ticket.EndDate | datetime }}
                         </a>
                     </div>
                     <a class="button is-outlined is-danger level-item">
@@ -102,45 +102,10 @@
                 <span class="icon level-item">
                     <i class="fas fa-tags"></i>
                 </span>
-                <span class="tags level-item">
-                    <span class="tag is-danger is-rounded">
-                        Tag 1
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-orange is-rounded">
-                        Tag 2
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-warning is-rounded">
-                        Tag 3
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-success is-rounded">
-                        Tag 4
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-primary is-rounded">
-                        Tag 5
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-info is-rounded">
-                        Tag 6
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-link is-rounded">
-                        Tag 7
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-purple is-rounded">
-                        Tag 8
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-pink is-rounded">
-                        Tag 9
-                        <button class="delete"></button>
-                    </span>
-                    <span class="tag is-grey is-rounded">
-                        Tag 10
+                <span class="tags level-item" ng-if="TicketModal.Ticket.Tags && TicketModal.Ticket.Tags.length > 0">
+                    <span ng-repeat="tag in TicketModal.Ticket.Tags"
+                          class="tag is-{{tag.TagColor}} is-rounded">
+                        {{tag.TagTitle}}
                         <button class="delete"></button>
                     </span>
                 </span>

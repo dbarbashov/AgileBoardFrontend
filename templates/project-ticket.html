@@ -1,18 +1,11 @@
 
 <div class="project-ticket-wrapper"
      dnd-draggable="$ctrl.ticket">
-    <header class="card-tags-header">
+    <header class="card-tags-header" ng-if="$ctrl.ticket.Tags && $ctrl.ticket.Tags.length > 0">
         <div class="tags has-addons">
-            <span class="tag is-danger is-rounded"></span>
-            <span class="tag is-orange is-rounded"></span>
-            <span class="tag is-warning is-rounded"></span>
-            <span class="tag is-success is-rounded"></span>
-            <span class="tag is-primary is-rounded"></span>
-            <span class="tag is-info is-rounded"></span>
-            <span class="tag is-link is-rounded"></span>
-            <span class="tag is-purple is-rounded"></span>
-            <span class="tag is-pink is-rounded"></span>
-            <span class="tag is-grey is-rounded"></span>
+            <span ng-repeat="tag in $ctrl.ticket.Tags"
+                  class="tag is-{{tag.TagColor}} is-rounded">
+            </span>
         </div>
     </header>
     <div class="card project-ticket disable-selection">
@@ -29,10 +22,10 @@
         </div>
         <div class="card-footer">
             <time class="card-footer-item is-size-6-5">
-                20 Mar 2018
+                {{ $ctrl.ticket.StartDate | datetime }}
             </time>
             <time class="card-footer-item is-size-6-5">
-                25 Mar 2018
+                {{ $ctrl.ticket.EndDate | datetime }}
             </time>
         </div>
     </div>
