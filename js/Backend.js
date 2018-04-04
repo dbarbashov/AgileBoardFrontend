@@ -79,5 +79,34 @@ module.exports = {
                 ProjectName: "New Project"
             });
         });
+    },
+
+    LoadAllUsers: function() {
+        return $q(function(resolve, reject) {
+            resolve([
+                {
+                    UserId: "1",
+                    FirstName: "Daniil",
+                    LastName: "Barbashov",
+                    UserPic: "https://bulma.io/images/placeholders/1280x960.png"
+                },
+                {
+                    UserId: "2",
+                    FirstName: "Michael",
+                    LastName: "Sapunov",
+                    UserPic: "https://bulma.io/images/placeholders/1280x960.png"
+                }
+            ]);
+        });
+    },
+    LoadCurrentUser: function() {
+        return $q(function(resolve, reject) {
+            resolve({
+                UserId: "1",
+                FirstName: "Daniil",
+                LastName: "Barbashov",
+                UserPic: "https://bulma.io/images/placeholders/1280x960.png"
+            });
+        });
     }
 };

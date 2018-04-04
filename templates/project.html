@@ -92,9 +92,12 @@
             </div>
         </header>
         <section class="modal-card-body">
-            <h1 class="subtitle">
-                {{ TicketModal.Ticket.TicketTitle }}
-            </h1>
+            <!--<h1 class="subtitle">-->
+                <!--{{ TicketModal.Ticket.TicketTitle }}-->
+            <!--</h1>-->
+
+            <input class="ticket-title-input input" ng-model="TicketModal.Ticket.TicketTitle"/>
+            <br/>
             <textarea class="textarea" placeholder="Description" rows="5" ng-model="TicketModal.Ticket.TicketDescription">
             </textarea>
             <br/>

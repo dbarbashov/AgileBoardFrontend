@@ -17,7 +17,7 @@
         </header>
         <div class="card-image" ng-if="$ctrl.ticket.TicketPic !== null">
             <figure class="image is-2by1">
-                <img src="{{ $ctrl.ticket.TicketPic }}">
+                <img ng-src="{{ $ctrl.ticket.TicketPic }}">
             </figure>
         </div>
         <div class="card-footer">
