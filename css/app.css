@@ -108,6 +108,10 @@ li.dndPlaceholder {
     border-radius: 50%;
 }
 
+.assignee-icon {
+    margin-left: -.4rem;
+}
+
 .tag.is-pink {
     background-color: #ff38b6;
     color: #fff;

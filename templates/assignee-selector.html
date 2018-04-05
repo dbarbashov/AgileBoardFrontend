@@ -1,0 +1,37 @@
+
+<div class="dropdown is-hoverable">
+    <div class="dropdown-trigger">
+        <button class="button is-outlined is-dark" aria-haspopup="true" aria-controls="assignee-dropdown">
+            <div ng-if="Assignee === null">
+                <span class="icon">
+                    <i class="far fa-user-circle"></i>
+                </span>
+                <span>Set assignee</span>
+            </div>
+            <div ng-if="Assignee !== null">
+                <span class="assignee-icon">
+                    <img class="image is-24x24 is-rounded" ng-src="{{Assignee.UserPic}}">
+                </span>
+                <span>{{Assignee.LastName}} {{Assignee.FirstName}}</span>
+            </div>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="assignee-dropdown" role="menu">
+        <div class="dropdown-content">
+            <a href="#" class="dropdown-item" ng-click="SelectAssignee(null)">
+                <span class="icon">
+                    <i class="far fa-user-circle"></i>
+                </span>
+                <span>Unassigned</span>
+            </a>
+            <hr class="dropdown-divider">
+            <a class="dropdown-item" ng-repeat="user in AllUsers"
+                ng-click="SelectAssignee(user)">
+                <span>
+                    <img class="image is-16x16 is-rounded" ng-src="{{user.UserPic}}">
+                </span>
+                <span>{{user.LastName}} {{user.FirstName}}</span>
+            </a>
+        </div>
+    </div>
+</div>

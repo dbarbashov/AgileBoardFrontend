@@ -60,13 +60,11 @@
     <div class="modal-card">
         <header class="modal-card-head">
             <div class="level" style="width: 100%">
-                <div class="ticket-assignee level-left">
-                    <a class="button is-outlined is-dark level-item">
-                        <span class="icon">
-                            <i class="far fa-user-circle"></i>
-                        </span>
-                        <span>Set assignee</span>
-                    </a>
+                <div class="level-left">
+                    <ab-assignee-selector class="level-item"
+                                          current-assignee="TicketModal.Ticket.AssigneeId"
+                                          on-assignee-selected="TicketModal.Ticket.AssigneeId = user.UserId">
+                    </ab-assignee-selector>
                     <div class="buttons has-addons level-item">
                         <a class="button is-outlined is-dark">
                             <span class="icon">
@@ -92,10 +90,6 @@
             </div>
         </header>
         <section class="modal-card-body">
-            <!--<h1 class="subtitle">-->
-                <!--{{ TicketModal.Ticket.TicketTitle }}-->
-            <!--</h1>-->
-
             <input class="ticket-title-input input" ng-model="TicketModal.Ticket.TicketTitle"/>
             <br/>
             <textarea class="textarea" placeholder="Description" rows="5" ng-model="TicketModal.Ticket.TicketDescription">

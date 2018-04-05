@@ -1,8 +1,6 @@
 var agileBoard = require('./AgileBoardModule');
 var UserService = require('./UserService');
-
 var fs = require('fs');
-
 
 module.exports =
     agileBoard.component('abHeader', {
