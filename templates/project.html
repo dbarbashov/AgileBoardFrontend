@@ -110,7 +110,10 @@
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
+            <button id="ticket-modal-save" class="button is-success"
+                    ng-click="TicketModal.Save()">
+                Save changes
+            </button>
             <button class="button" ng-click="TicketModal.Hide()">Cancel</button>
         </footer>
     </div>

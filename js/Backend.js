@@ -114,5 +114,12 @@ module.exports = {
                 UserPic: "https://bulma.io/images/placeholders/1280x960.png"
             });
         });
+    },
+    SaveTicket: function(ticket) {
+        return $q(function(resolve, reject) {
+            setTimeout(function() {
+                resolve(ticket);
+            }, 500);
+        });
     }
 };

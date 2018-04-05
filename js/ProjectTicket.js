@@ -8,12 +8,13 @@ function ProjectTicketController($scope, TicketModal) {
     $scope.TicketModal = TicketModal;
 
     var OnTicketSave = function(ticket) {
-        console.info("Saved ", ticket);
+        that.ticket = ticket;
+        $scope.$apply();
     };
 
     this.EnableEditing = function(ticket) {
         TicketModal.Show(OnTicketSave);
-        TicketModal.Ticket = ticket;
+        TicketModal.SetTicket(ticket);
     };
 }
 
