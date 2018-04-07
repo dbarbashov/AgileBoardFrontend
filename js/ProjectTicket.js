@@ -9,6 +9,7 @@ function ProjectTicketController($scope, TicketModal) {
 
     var OnTicketSave = function(ticket) {
         that.ticket = ticket;
+        that.onTicketUpdate({updTicket: ticket});
         $scope.$apply();
     };
 
@@ -22,7 +23,8 @@ module.exports =
     agileBoard.component('abProjectTicket', {
         controller: ['$scope', 'TicketModal', ProjectTicketController],
         bindings: {
-            ticket: '='
+            ticket: '=',
+            onTicketUpdate: '&'
         },
         template: fs.readFileSync('./templates/project-ticket.html')
     });

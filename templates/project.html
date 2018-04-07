@@ -31,7 +31,8 @@
                    ng-keypress="$event.keyCode == 13 ? $ctrl.SetColumnName(column, EditingColumnName) : ''"/>
         </div>
         <div class="column">
-            <a class="button is-primary project-ticket-add-button">
+            <a class="button is-primary project-ticket-add-button"
+                ng-click="$ctrl.AddNewTicket(column)">
                 <span class="icon"><i class="fas fa-plus"></i></span>
                 <span>Add ticket</span>
             </a>
@@ -39,7 +40,8 @@
         <div class="project-column-dnd-list"
              dnd-list=""
              dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
-            <ab-project-ticket ng-repeat="ticket in column.Tickets" ticket="ticket">
+            <ab-project-ticket ng-repeat="(idx, ticket) in column.Tickets" ticket="ticket"
+                on-ticket-update="column.Tickets[idx] = updTicket">
             </ab-project-ticket>
         </div>
     </div>
@@ -71,12 +73,18 @@
                                 <i class="far fa-clock"></i>
                             </span>
                         </a>
-                        <a class="button is-outlined is-dark">
+                        <a id="ticket-start-date-btn" class="button is-outlined is-dark"
+                            ng-click="TicketModal.EditStartDate()">
                             {{ TicketModal.Ticket.StartDate | datetime }}
                         </a>
-                        <a class="button is-outlined is-dark">
+                        <input id="ticket-start-date" type="hidden"
+                               ng-value="TicketModal.Ticket.StartDate | datetime:'YYYY-MM-DD'">
+                        <a id="ticket-end-date-btn" class="button is-outlined is-dark"
+                           ng-click="TicketModal.EditEndDate()">
                             {{ TicketModal.Ticket.EndDate | datetime }}
                         </a>
+                        <input id="ticket-end-date" type="hidden"
+                               ng-value="TicketModal.Ticket.EndDate | datetime:'YYYY-MM-DD'">
                     </div>
                     <a class="button is-outlined is-danger level-item">
                         <span class="icon">
@@ -107,6 +115,33 @@
                     </span>
                 </span>
                 <a class="button is-text is-small level-item is-rounded">Add tag</a>
+            </div>
+
+            <label class="label">Depends on:</label>
+
+            <input class="input input-sm" ng-model="TicketModal.TaskSearch"
+                   placeholder="Add dependency">
+            <div class="dependencies">
+                <div class="buttons">
+                    <a class="button is-primary is-small"
+                       style="display: block; margin-bottom: 4px"
+                       ng-repeat="ticketId in TicketModal.Ticket.Dependencies">
+                        {{TicketsIndex[ticketId].TicketTitle}}
+                    </a>
+                </div>
+
+                <div class="dependencies-search" ng-if="TicketModal.TaskSearch.length > 0">
+                    <a class="button is-outlined is-dark is-small"
+                       style="display: block; margin-bottom: 4px"
+                       ng-repeat="ticket in AllTickets | orderBy:'TicketTitle' | filter:TicketModal.TaskSearch"
+                       ng-click="
+                        TicketModal.Ticket.Dependencies.indexOf(ticket.TicketId) == -1 ?
+                            TicketModal.Ticket.Dependencies.push(ticket.TicketId) : null;
+                        TicketModal.TaskSearch = '';
+                       ">
+                        {{ticket.TicketTitle}}
+                    </a>
+                </div>
             </div>
         </section>
         <footer class="modal-card-foot">

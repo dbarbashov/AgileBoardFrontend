@@ -9,9 +9,14 @@ var brfs = require('gulp-brfs');
 var del = require('del');
 
 var paths = {
-    scripts: ['main.js', 'js/**/*.js', 'js/*.js'],
+    scripts: [
+        'main.js', 'js/**/*.js', 'js/*.js'
+    ],
     html: ['index.html'],
-    css: ['css/**/*.css', 'css/*.css'],
+    css: [
+        'css/**/*.css', 'css/*.css',
+        'node_modules/bulma-calendar/dist/bulma-calendar.min.css'
+    ],
     fonts: ['webfonts/*']
 };
 
@@ -29,7 +34,7 @@ gulp.task('scripts', ['clean'], function() {
         .pipe(sourcemaps.init())
         .pipe(brfs())
         .pipe(webpack(require('./webpack.config')))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(concat('all.min.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build'));

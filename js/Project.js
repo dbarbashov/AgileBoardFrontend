@@ -6,6 +6,8 @@ function ProjectController($rootScope, $scope, TicketModal) {
     var that = this;
 
     $scope.Columns = {};
+    $scope.TicketsIndex = {};
+    $scope.AllTickets = [];
 
     $scope.EditingProject = false;
     $scope.EditingProjectName = null;
@@ -18,35 +20,42 @@ function ProjectController($rootScope, $scope, TicketModal) {
     // Индекс TicketId -> ColumnId
     var ColumnIdByTicketId = {};
 
-    Backend.GetColumnsByProject(this.project)
-        .then(
-            function (cols) {
-                $scope.Columns = {};
-                // Индексируем колонки по ColumnId
-                cols.forEach(function(col) {
-                    $scope.Columns[col.ColumnId] = col;
-                });
-                $scope.$apply();
-                return cols;
-            }
-        )
-        .then(
-            function (cols) {
-                cols.forEach(function(col) {
-                    // Запрашиваем карточки в колонке
-                    Backend.GetTicketsByColumn(col.ColumnId).then(
-                        function(tickets) {
-                            col.Tickets = tickets;
-                            // Индексируем id колонок по id карточки
-                            tickets.forEach(function(ticket) {
-                                ColumnIdByTicketId[ticket.TicketId] = col.ColumnId;
-                            });
-                            $scope.$apply();
-                        }
-                    )
-                });
-            }
-        );
+    var Init = function () {
+        return Backend.GetColumnsByProject(this.project)
+            .then(
+                function (cols) {
+                    $scope.Columns = {};
+                    // Индексируем колонки по ColumnId
+                    cols.forEach(function(col) {
+                        $scope.Columns[col.ColumnId] = col;
+                    });
+                    $scope.$apply();
+                    return cols;
+                }
+            )
+            .then(
+                function (cols) {
+                    cols.forEach(function(col) {
+                        // Запрашиваем карточки в колонке
+                        Backend.GetTicketsByColumn(col.ColumnId).then(
+                            function(tickets) {
+                                col.Tickets = tickets;
+                                // Индексируем id колонок по id карточки
+                                tickets.forEach(function(ticket) {
+                                    ColumnIdByTicketId[ticket.TicketId] = col.ColumnId;
+                                    $scope.TicketsIndex[ticket.TicketId] = ticket;
+                                    $scope.AllTickets.push(ticket);
+                                });
+                                $scope.$apply();
+                            }
+                        )
+                    });
+                    return true;
+                }
+            );
+    };
+
+    this.$onInit = Init;
 
     this.OnTicketDrop = function(toColumn, index, ticket) {
         var fromColumn = $scope.Columns[ColumnIdByTicketId[ticket.TicketId]];
@@ -148,13 +157,29 @@ function ProjectController($rootScope, $scope, TicketModal) {
             }
         );
     };
+
+    this.AddNewTicket = function(column) {
+        Backend.AddTicket(column.ColumnId).then(
+            function(ticket) {
+                column.Tickets.splice(0, 0, ticket);
+                ColumnIdByTicketId[ticket.TicketId] = column.ColumnId;
+                $scope.TicketsIndex[ticket.TicketId] = ticket;
+                $scope.AllTickets.push(ticket);
+                $scope.$apply();
+            }
+        );
+    };
+
+    $rootScope.$on('project-changed', function() {
+        Init();
+    });
 }
 
 module.exports =
     agileBoard.component('abProject', {
         controller: ['$rootScope', '$scope', 'TicketModal', ProjectController],
         bindings: {
-            project: '='
+            project: '<'
         },
         template: fs.readFileSync('./templates/project.html')
     });

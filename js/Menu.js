@@ -18,6 +18,7 @@ function MenuController($rootScope, $scope) {
     this.SetActiveProject = function (project) {
         $rootScope.ActiveProject = project;
         $scope.ActiveProject = project;
+        $rootScope.$broadcast("project-changed");
     };
 
     this.AddNewProject = function() {

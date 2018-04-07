@@ -11,7 +11,7 @@ module.exports = {
                 { ProjectId: "2", ProjectName: "Project 2" },
                 { ProjectId: "3", ProjectName: "Project 3" }
             ];
-            resolve(projects);
+            resolve(JSON.parse(JSON.stringify(projects)));
         });
     },
     GetColumnsByProject: function(projectId) {
@@ -21,7 +21,7 @@ module.exports = {
                 { ColumnId: "2", ColumnName: "Second column", Tickets: [] },
                 { ColumnId: "3", ColumnName: "Third column", Tickets: [] }
             ];
-            resolve(columns);
+            resolve(JSON.parse(JSON.stringify(columns)));
         });
     },
     GetTicketsByColumn: function(columnId) {
@@ -35,7 +35,8 @@ module.exports = {
                         {TagId: '2', TagTitle: 'Tag2', TagColor: 'warning'},
                         {TagId: '3', TagTitle: 'Просто тег', TagColor: 'success'}
                     ],
-                    AssigneeId: "1"
+                    AssigneeId: "1",
+                    Dependencies: []
                 },
                 { TicketId: columnId + "2", TicketTitle: "Ticket 2", TicketDescription: "Lorem ipsum set dolor amet",
                     TicketPic: "https://bulma.io/images/placeholders/1280x960.png",
@@ -43,16 +44,18 @@ module.exports = {
                     Tags: [
                         {TagId: '3', TagTitle: 'Просто тег', TagColor: 'success'}
                     ],
-                    AssigneeId: null
+                    AssigneeId: null,
+                    Dependencies: []
                 },
                 { TicketId: columnId + "3", TicketTitle: "Ticket 3", TicketDescription: "Раз два три четыре пять",
                     TicketPic: null,
                     StartDate: (new Date())*1 - 60*60*49*1000, EndDate: (new Date)*1 - 60*60*1000,
                     Tags: [],
-                    AssigneeId: null
+                    AssigneeId: null,
+                    Dependencies: []
                 }
             ];
-            resolve(tickets);
+            resolve(JSON.parse(JSON.stringify(tickets)));
         });
     },
     SetColumnName: function(columnId, columnName) {
@@ -120,6 +123,21 @@ module.exports = {
             setTimeout(function() {
                 resolve(ticket);
             }, 500);
+        });
+    },
+    AddTicket: function(columnId) {
+        return $q(function(resolve, reject) {
+            resolve(JSON.parse(JSON.stringify({
+                TicketId: columnId + Math.random(),
+                TicketTitle: "New ticket",
+                TicketDescription: "",
+                TicketPic: null,
+                StartDate: null,
+                EndDate: null,
+                Tags: [],
+                AssigneeId: null,
+                Dependencies: []
+            })));
         });
     }
 };
