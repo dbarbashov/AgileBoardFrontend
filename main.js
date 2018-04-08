@@ -8,6 +8,7 @@ var dateTimeFilter = require('./js/DateTimeFilter');
 var UserService = require('./js/UserService');
 var Preloader = require('./js/Preloader');
 var assigneeSelector = require('./js/AssigneeSelector');
+var ganntChart = require('./js/GanntChart');
 
 Preloader.Show();
 UserService.LoadCurrentUser().then(function(_) {

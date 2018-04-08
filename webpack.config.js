@@ -10,6 +10,9 @@ module.exports = {
                 test: /\.js$/,
                 loader: "transform?brfs"
             }
+        ],
+        noParse: [
+            'js/vendor/*.js'
         ]
     }
 };

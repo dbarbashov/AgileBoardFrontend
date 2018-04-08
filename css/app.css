@@ -2,6 +2,12 @@
     width: 200px;
 }
 
+.main-menu a.button {
+    padding-top: calc(.375em - 1px);
+    padding-bottom: calc(.375em - 1px);
+    margin: 0 .5rem;
+}
+
 .project-columns {
     /*overflow-x: scroll;*/
 }

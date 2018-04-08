@@ -10,7 +10,10 @@ var del = require('del');
 
 var paths = {
     scripts: [
-        'main.js', 'js/**/*.js', 'js/*.js'
+        'main.js', 'js/*.js'
+    ],
+    scriptsVendor: [
+        'js/vendor/*.js'
     ],
     html: ['index.html'],
     css: [
@@ -30,13 +33,15 @@ gulp.task('clean', function() {
 gulp.task('scripts', ['clean'], function() {
     // Minify and copy all JavaScript (except vendor scripts)
     // with sourcemaps all the way down
+    gulp.src(paths.scriptsVendor)
+        .pipe(concat('vendor.min.js'))
+        .pipe(gulp.dest('build'));
+
     return gulp.src(paths.scripts)
-        .pipe(sourcemaps.init())
         .pipe(brfs())
         .pipe(webpack(require('./webpack.config')))
         // .pipe(uglify())
         .pipe(concat('all.min.js'))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('build'));
 });
 

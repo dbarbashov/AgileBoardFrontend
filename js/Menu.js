@@ -5,6 +5,8 @@ var fs = require('fs');
 function MenuController($rootScope, $scope) {
     $scope.Projects = [];
     $scope.ActiveProject = null;
+    $rootScope.View = "project";
+    $scope.View = "project";
 
     var that = this;
 
@@ -30,6 +32,18 @@ function MenuController($rootScope, $scope) {
             }
         );
     };
+
+    this.SelectMenuItem = function(menuCategory, arg) {
+        if (menuCategory === 'project') {
+            $rootScope.View = 'project';
+            $scope.View = "project";
+            that.SetActiveProject(arg);
+        } else {
+            $rootScope.View = menuCategory;
+            $scope.View = menuCategory;
+            that.SetActiveProject(null);
+        }
+    }
 }
 
 module.exports =

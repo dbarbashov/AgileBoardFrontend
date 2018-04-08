@@ -5,7 +5,7 @@
     <ul class="menu-list">
         <li ng-repeat="project in Projects">
             <a class="{{ project.ProjectId == ActiveProject.ProjectId ? 'is-active' : ''}}"
-                ng-click="$ctrl.SetActiveProject(project)">
+                ng-click="$ctrl.SelectMenuItem('project', project)">
                 {{ project.ProjectName }}
             </a>
         </li>
@@ -22,10 +22,12 @@
     </p>
     <ul class="menu-list">
         <li>
-            <a>Gannt Chart</a>
+            <a class="{{ View === 'gannt-chart' ? 'is-active' : ''}}"
+               ng-click="$ctrl.SelectMenuItem('gannt-chart')">Gannt Chart</a>
         </li>
         <li>
-            <a>Resources</a>
+            <a class="{{ View === 'resources' ? 'is-active' : ''}}"
+               ng-click="$ctrl.SelectMenuItem('resources')">Resources</a>
         </li>
     </ul>
 </aside>
