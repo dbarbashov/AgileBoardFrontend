@@ -21,6 +21,9 @@
             </figure>
         </div>
         <div class="card-footer">
+            <div class="card-footer-item is-size-">
+                <img class="image is-rounded is-32x32" ng-src="{{AllUsers[$ctrl.ticket.AssigneeId].UserPic}}">
+            </div>
             <time class="card-footer-item is-size-6-5">
                 {{ $ctrl.ticket.StartDate | datetime }}
             </time>

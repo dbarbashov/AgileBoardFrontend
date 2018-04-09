@@ -1,8 +1,9 @@
 var agileBoard = require('./AgileBoardModule');
 var Backend = require('./Backend');
+var UserService = require('./UserService');
 var fs = require('fs');
 
-function ProjectTicketController($scope, TicketModal) {
+function ProjectTicketController($rootScope, $scope, TicketModal) {
     var that = this;
 
     $scope.TicketModal = TicketModal;
@@ -17,11 +18,20 @@ function ProjectTicketController($scope, TicketModal) {
         TicketModal.Show(OnTicketSave);
         TicketModal.SetTicket(ticket);
     };
+
+    $scope.AllUsers = {};
+    UserService.AllUsers.forEach(function(user) {
+        $scope.AllUsers[user.UserId] = user;
+    });
+
+    $rootScope.$on('update-ticket', function() {
+        $scope.$apply();
+    });
 }
 
 module.exports =
     agileBoard.component('abProjectTicket', {
-        controller: ['$scope', 'TicketModal', ProjectTicketController],
+        controller: ['$rootScope', '$scope', 'TicketModal', ProjectTicketController],
         bindings: {
             ticket: '=',
             onTicketUpdate: '&'

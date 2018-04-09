@@ -21,6 +21,9 @@ function ProjectController($rootScope, $scope, TicketModal) {
     var ColumnIdByTicketId = {};
 
     var Init = function () {
+        if ($rootScope.ActiveProject === null) {
+            return;
+        }
         return Backend.GetColumnsByProject($rootScope.ActiveProject.ProjectId)
             .then(
                 function (cols) {
@@ -170,6 +173,9 @@ function ProjectController($rootScope, $scope, TicketModal) {
 
     $rootScope.$on('project-changed', function() {
         Init();
+    });
+    $rootScope.$on('update-ticket', function() {
+        $scope.$apply();
     });
     Init();
 }

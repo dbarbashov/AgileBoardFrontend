@@ -3,8 +3,8 @@ var Backend = require('./Backend');
 var moment = require('moment');
 var bulmaCalendar = require('../node_modules/bulma-calendar/dist/bulma-calendar');
 
-agileBoard.service('TicketModal', [
-    function() {
+agileBoard.service('TicketModal', ['$rootScope',
+    function($rootScope) {
         var _saveCallback = null;
         var _scopeUpdate = null;
 
@@ -14,6 +14,7 @@ agileBoard.service('TicketModal', [
             overlay: true,
             onSelect: function(val) {
                 that.Ticket.StartDate = val*1;
+                $rootScope.$broadcast("update-ticket");
             }
         });
         var endDateInput = document.getElementById('ticket-end-date');
@@ -22,6 +23,7 @@ agileBoard.service('TicketModal', [
             overlay: true,
             onSelect: function(val) {
                 that.Ticket.EndDate = val*1;
+                $rootScope.$broadcast("update-ticket");
             }
         });
 
@@ -50,6 +52,7 @@ agileBoard.service('TicketModal', [
                     if (isOk === "true") {
                         saveButton.classList.remove('is-loading');
                         _saveCallback(that.Ticket);
+                        $rootScope.$broadcast("update-ticket");
                         that.Hide();
                     } else {
                         that.Hide();

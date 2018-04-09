@@ -141,6 +141,11 @@ var FakeBackend = {
                 Dependencies: []
             })));
         });
+    },
+    SaveUser: function(user) {
+        return $q(function(resolve, reject) {
+            resolve(user);
+        });
     }
 };
 
@@ -202,6 +207,13 @@ var RealBackend = {
     },
     AddTicket: function(columnId) {
         return $http.post(BackendAddress + "AddTicket?columnId=" + columnId).then(GetData);
+    },
+    SaveUser: function(user) {
+        return $http({
+            method: "POST",
+            url: BackendAddress + "SaveUser",
+            data: user
+        }).then(GetData);
     }
 };
 

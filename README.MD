@@ -96,3 +96,9 @@ Saves ticket and returns saved ticked. If save is unsuccessful returns the same 
 `/AddTicket?columnId=<...>`
 
 Creates new ticket in specified column with default values and returns it.
+
+POST SaveUser :: User (POST body) -> User
+`/SaveUser`
+
+Saves new user in system.
+Returns null if there is already user with such UserId

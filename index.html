@@ -23,11 +23,11 @@
 
             <section class="section column is-paddingless">
                 <ab-project ng-if="View === 'project' && ActiveProject" project="ActiveProject"></ab-project>
-                <div ng-show="View === 'gannt-chart'">
+                <div ng-if="View === 'gannt-chart'">
                     <ab-gannt-chart></ab-gannt-chart>
                 </div>
-                <div ng-show="View === 'resources'">
-                    Resource view
+                <div ng-if="View === 'resources'">
+                    <ab-resources></ab-resources>
                 </div>
             </section>
         </div>
