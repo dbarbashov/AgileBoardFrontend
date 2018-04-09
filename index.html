@@ -22,7 +22,7 @@
             <ab-menu class="column is-narrow main-menu"></ab-menu>
 
             <section class="section column is-paddingless">
-                <ab-project ng-show="View === 'project' && ActiveProject" project="ActiveProject"></ab-project>
+                <ab-project ng-if="View === 'project' && ActiveProject" project="ActiveProject"></ab-project>
                 <div ng-show="View === 'gannt-chart'">
                     <ab-gannt-chart></ab-gannt-chart>
                 </div>

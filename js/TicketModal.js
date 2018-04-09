@@ -46,10 +46,14 @@ agileBoard.service('TicketModal', [
             Save: function() {
                 var saveButton = document.getElementById("ticket-modal-save");
                 saveButton.classList.add('is-loading');
-                Backend.SaveTicket(that.Ticket).then(function(ticket) {
-                    saveButton.classList.remove('is-loading');
-                    _saveCallback(ticket);
-                    that.Hide();
+                Backend.SaveTicket(that.Ticket).then(function(isOk) {
+                    if (isOk === "true") {
+                        saveButton.classList.remove('is-loading');
+                        _saveCallback(that.Ticket);
+                        that.Hide();
+                    } else {
+                        that.Hide();
+                    }
                 });
             },
             EditStartDate: function() {

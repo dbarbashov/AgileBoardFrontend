@@ -21,7 +21,7 @@ function ProjectController($rootScope, $scope, TicketModal) {
     var ColumnIdByTicketId = {};
 
     var Init = function () {
-        return Backend.GetColumnsByProject(this.project)
+        return Backend.GetColumnsByProject($rootScope.ActiveProject.ProjectId)
             .then(
                 function (cols) {
                     $scope.Columns = {};
@@ -55,8 +55,6 @@ function ProjectController($rootScope, $scope, TicketModal) {
             );
     };
 
-    this.$onInit = Init;
-
     this.OnTicketDrop = function(toColumn, index, ticket) {
         var fromColumn = $scope.Columns[ColumnIdByTicketId[ticket.TicketId]];
 
@@ -85,7 +83,7 @@ function ProjectController($rootScope, $scope, TicketModal) {
         // Отправим запрос на перенос на бекенде
         Backend.MoveTicketToColumn(fromColumn.ColumnId, toColumn.ColumnId, ticket.TicketId, index).then(
             function(res) {
-                if (res !== true) {
+                if (res !== "true") {
                     // В случае, если бекенд отказывает в таком перетаскивании, откатим изменения на фронте
                     $scope.Columns[fromColumn.ColumnId].Tickets = fromColumnTickets;
                     $scope.Columns[toColumn.ColumnId].Tickets = toColumnTickets;
@@ -137,7 +135,7 @@ function ProjectController($rootScope, $scope, TicketModal) {
 
         Backend.SetProjectName(project.ProjectId, projectName).then(
             function(success) {
-                if (!success) {
+                if (success === "false") {
                     project.ProjectName = oldProjectName;
                     $scope.$apply()
                 }
@@ -173,6 +171,7 @@ function ProjectController($rootScope, $scope, TicketModal) {
     $rootScope.$on('project-changed', function() {
         Init();
     });
+    Init();
 }
 
 module.exports =

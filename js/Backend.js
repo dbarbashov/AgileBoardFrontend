@@ -2,8 +2,9 @@ var angular = require('angular');
 
 var injector = angular.injector(['ng']);
 var $q = injector.get('$q');
+var $http = injector.get('$http');
 
-module.exports = {
+var FakeBackend = {
     GetProjects: function() {
         return $q(function(resolve, reject) {
             var projects = [
@@ -142,3 +143,66 @@ module.exports = {
         });
     }
 };
+
+var BackendAddress = "http://localhost:3000/";
+var GetData = function(response) {
+    return response.data;
+};
+
+var RealBackend = {
+    GetProjects: function() {
+        return $http.get(BackendAddress + "GetProjects").then(GetData);
+    },
+    GetColumnsByProject: function(projectId) {
+        return $http.get(BackendAddress + "GetColumnsByProject?projectId=" + projectId).then(GetData);
+    },
+    GetTicketsByColumn: function(columnId) {
+        return $http.get(BackendAddress + "GetTicketsByColumn?columnId=" + columnId).then(GetData);
+    },
+    SetColumnName: function(columnId, columnName) {
+        return $http.post(
+            BackendAddress + "SetColumnName?columnId=" + columnId + "&columnName=" + columnName
+        ).then(GetData);
+    },
+    SetProjectName: function(projectId, projectName) {
+        return $http.post(BackendAddress + "SetProjectName?projectId=" + projectId
+                                         + "&projectName=" + projectName).then(GetData);
+    },
+    MoveTicketToColumn: function(fromColumnId, toColumnId, ticketId, index) {
+        return $http.post(
+            BackendAddress
+            + "MoveTicketToColumn?fromColumnId=" + fromColumnId
+            + "&toColumnId=" + toColumnId
+            + "&ticketId=" + ticketId
+            + "&index=" + index.toString()
+        ).then(GetData);
+    },
+    AddNewColumn: function(projectId) {
+        return $http.post(
+            BackendAddress
+            + "AddNewColumn?projectId=" + projectId
+        ).then(GetData);
+    },
+    AddNewProject: function() {
+        return $http.post(BackendAddress + "AddNewProject").then(GetData);
+    },
+
+    LoadAllUsers: function() {
+        return $http.get(BackendAddress + "LoadAllUsers").then(GetData);
+    },
+    LoadCurrentUser: function() {
+        return $http.get(BackendAddress + "LoadCurrentUser").then(GetData);
+    },
+    SaveTicket: function(ticket) {
+        return $http({
+            method: "POST",
+            url: BackendAddress + "SaveTicket",
+            data: ticket
+        }).then(GetData);
+    },
+    AddTicket: function(columnId) {
+        return $http.post(BackendAddress + "AddTicket?columnId=" + columnId).then(GetData);
+    }
+};
+
+module.exports = RealBackend;
