@@ -17,7 +17,7 @@ var paths = {
     ],
     html: ['index.html'],
     css: [
-        'css/**/*.css', 'css/*.css',
+        'css/vendor/*.css', 'css/*.css',
         'node_modules/bulma-calendar/dist/bulma-calendar.min.css'
     ],
     fonts: ['webfonts/*']
@@ -57,10 +57,10 @@ gulp.task('fonts', ['clean'], function() {
 
 gulp.task('css', ['clean'], function () {
     return gulp.src(paths.css)
-        .pipe(sourcemaps.init())
-        .pipe(cssmin())
+        // .pipe(sourcemaps.init())
+        // .pipe(cssmin())
         .pipe(concat('all.min.css'))
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('build'));
 });
 

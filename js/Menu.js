@@ -10,12 +10,16 @@ function MenuController($rootScope, $scope) {
 
     var that = this;
 
-    Backend.GetProjects().then(
-        function(projects) {
-            $scope.Projects = projects;
-            $scope.$apply();
-        }
-    );
+    function Init() {
+        return Backend.GetProjects().then(
+            function(projects) {
+                $scope.Projects = projects;
+                $scope.$apply();
+            }
+        );
+    }
+
+    Init();
 
     this.SetActiveProject = function (project) {
         $rootScope.ActiveProject = project;
@@ -43,7 +47,20 @@ function MenuController($rootScope, $scope) {
             $scope.View = menuCategory;
             that.SetActiveProject(null);
         }
-    }
+    };
+
+    this.DeleteProject = function(project) {
+        return Backend.DeleteProject(project.ProjectId).then(function(resp) {
+            if (resp === "true") {
+                if ($scope.ActiveProject === project) {
+                    $rootScope.View = null;
+                    $scope.View = null;
+                    $scope.ActiveProject = null;
+                }
+                return Init();
+            }
+        });
+    };
 }
 
 module.exports =

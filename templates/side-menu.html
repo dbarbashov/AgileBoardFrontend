@@ -4,9 +4,10 @@
     </p>
     <ul class="menu-list">
         <li ng-repeat="project in Projects">
-            <a class="{{ project.ProjectId == ActiveProject.ProjectId ? 'is-active' : ''}}"
+            <a class="project-btn {{ project.ProjectId == ActiveProject.ProjectId ? 'is-active' : ''}}"
                 ng-click="$ctrl.SelectMenuItem('project', project)">
                 {{ project.ProjectName }}
+                <span class="delete ab-delete" ng-click="$ctrl.DeleteProject(project)"></span>
             </a>
         </li>
         <li>

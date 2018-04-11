@@ -37,6 +37,17 @@ function ResourcesController($scope) {
             }
         });
     };
+
+    this.DeleteUser = function(user) {
+        Backend.DeleteUser(user.UserId).then(function(resp) {
+            if (resp === "true") {
+                return UserService.LoadAllUsers();
+            }
+        }).then(function(users) {
+            $scope.AllUsers = users;
+            $scope.$apply();
+        });
+    };
 }
 
 module.exports =

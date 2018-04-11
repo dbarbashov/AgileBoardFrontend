@@ -34,7 +34,8 @@ module.exports =
         controller: ['$rootScope', '$scope', 'TicketModal', ProjectTicketController],
         bindings: {
             ticket: '=',
-            onTicketUpdate: '&'
+            onTicketUpdate: '&',
+            onTicketDelete: '&'
         },
         template: fs.readFileSync('./templates/project-ticket.html')
     });

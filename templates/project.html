@@ -24,6 +24,7 @@
                 ng-if="EditingColumn !== column.ColumnId"
                 ng-dblclick="$ctrl.EnableColumnNameEditing(column)">
                 {{ column.ColumnName }}
+                <span class="delete ab-delete" ng-click="$ctrl.DeleteColumn(column)"></span>
             </h1>
             <input class="input is-small is-primary is-rounded"
                    ng-if="EditingColumn === column.ColumnId"
@@ -41,7 +42,8 @@
              dnd-list=""
              dnd-drop="$ctrl.OnTicketDrop(column, index, item)">
             <ab-project-ticket ng-repeat="(idx, ticket) in column.Tickets" ticket="ticket"
-                on-ticket-update="column.Tickets[idx] = updTicket">
+                on-ticket-update="column.Tickets[idx] = updTicket"
+                on-ticket-delete="$ctrl.DeleteTicket(column, ticket)">
             </ab-project-ticket>
         </div>
     </div>

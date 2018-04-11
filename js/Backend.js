@@ -146,6 +146,26 @@ var FakeBackend = {
         return $q(function(resolve, reject) {
             resolve(user);
         });
+    },
+    DeleteTicket: function(columnId, ticketId) {
+        return $q(function(resolve, reject) {
+            resolve("true");
+        });
+    },
+    DeleteColumn: function(columnId) {
+        return $q(function(resolve, reject) {
+            resolve("true");
+        });
+    },
+    DeleteProject: function(projectId) {
+        return $q(function(resolve, reject) {
+            resolve("true");
+        });
+    },
+    DeleteUser: function(userId) {
+        return $q(function(resolve, reject) {
+            resolve("true");
+        });
     }
 };
 
@@ -214,6 +234,22 @@ var RealBackend = {
             url: BackendAddress + "SaveUser",
             data: user
         }).then(GetData);
+    },
+    DeleteTicket: function(columnId, ticketId) {
+        return $http.post(
+            BackendAddress + "DeleteTicket?columnId=" + columnId + "&ticketId=" + ticketId
+        ).then(GetData);
+    },
+    DeleteColumn: function(projectId, columnId) {
+        return $http.post(
+            BackendAddress + "DeleteColumn?projectId=" + projectId + "&columnId=" + columnId
+        ).then(GetData);
+    },
+    DeleteProject: function(projectId) {
+        return $http.post(BackendAddress + "DeleteProject?projectId=" + projectId).then(GetData);
+    },
+    DeleteUser: function(userId) {
+        return $http.post(BackendAddress + "DeleteUser?userId=" + userId).then(GetData);
     }
 };
 

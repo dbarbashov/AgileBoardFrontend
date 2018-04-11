@@ -171,6 +171,22 @@ function ProjectController($rootScope, $scope, TicketModal) {
         );
     };
 
+    this.DeleteColumn = function(column) {
+        Backend.DeleteColumn($rootScope.ActiveProject.ProjectId, column.ColumnId).then(function(resp) {
+            if (resp === "true") {
+                Init();
+            }
+        });
+    };
+
+    this.DeleteTicket = function(column, ticket) {
+        Backend.DeleteTicket(column.ColumnId, ticket.TicketId).then(function(resp) {
+            if (resp === "true") {
+                Init();
+            }
+        });
+    };
+
     $rootScope.$on('project-changed', function() {
         Init();
     });

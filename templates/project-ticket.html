@@ -14,6 +14,10 @@
                 ng-click="$ctrl.EnableEditing($ctrl.ticket)">
                 {{ $ctrl.ticket.TicketTitle }}
             </p>
+            <a href="#" class="card-header-icon ab-delete" aria-label="more options"
+                ng-click="$ctrl.onTicketDelete()">
+              <span class="delete"></span>
+            </a>
         </header>
         <div class="card-image" ng-if="$ctrl.ticket.TicketPic !== null">
             <figure class="image is-2by1">
