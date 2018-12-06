@@ -15,7 +15,7 @@ var paths = {
     scriptsVendor: [
         'js/vendor/*.js'
     ],
-    html: ['index.html'],
+    html: ['index.html', 'login.html'],
     css: [
         'css/vendor/*.css', 'css/*.css',
         'node_modules/bulma-calendar/dist/bulma-calendar.min.css'
