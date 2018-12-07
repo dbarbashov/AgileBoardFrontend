@@ -97,14 +97,26 @@ var FakeBackend = {
             resolve([
                 {
                     UserId: "1",
+                    Login: "dbarbashov",
+                    Password: "test",
                     FirstName: "Daniil",
                     LastName: "Barbashov",
                     UserPic: "https://bulma.io/images/placeholders/1280x960.png"
                 },
                 {
                     UserId: "2",
+                    Login: "msapunov",
+                    Password: "test",
                     FirstName: "Michael",
                     LastName: "Sapunov",
+                    UserPic: "https://bulma.io/images/placeholders/1280x960.png"
+                },
+                {
+                    UserId: "3",
+                    Login: "kulyantsev",
+                    Password: "test",
+                    FirstName: "Kirill",
+                    LastName: "Ulyantsev",
                     UserPic: "https://bulma.io/images/placeholders/1280x960.png"
                 }
             ]);
@@ -114,6 +126,8 @@ var FakeBackend = {
         return $q(function(resolve, reject) {
             resolve({
                 UserId: "1",
+                Login: "dbarbashov",
+                Password: "test",
                 FirstName: "Daniil",
                 LastName: "Barbashov",
                 UserPic: "https://bulma.io/images/placeholders/1280x960.png"

@@ -4,8 +4,16 @@
             <h1 class="title has-text-white">Agileboard</h1>
         </div>
         <div class="level-right">
-            <img class="image is-32x32 is-rounded" ng-src="{{CurrentUser.UserPic}}" />
+            <img class="image is-32x32 is-rounded" style="margin-right: 20px" ng-src="{{CurrentUser.UserPic}}" />
+
             {{CurrentUser.LastName}} {{CurrentUser.FirstName}}
+            <a class="button is-small is-primary" ng-click="$ctrl.LogOut()">
+                <span class="icon is-small">
+                    <i class="fa fa-sign-out-alt"></i>
+                </span>
+                <span>LogOut</span>
+            </a>
         </div>
     </div>
+
 </section>
