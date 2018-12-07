@@ -2,6 +2,8 @@
     <table class="table">
         <thead>
             <tr>
+                <td>Login</td>
+                <td>Password</td>
                 <td>First Name</td>
                 <td>Last Name</td>
                 <td>Userpic</td>
@@ -10,6 +12,16 @@
         </thead>
         <tbody>
             <tr>
+                <td>
+                    <input class="input"
+                           ng-class="{'is-danger': NewUser.Login.length == 0}"
+                           ng-model="NewUser.Login">
+                </td>
+                <td>
+                    <input class="input"
+                           ng-class="{'is-danger': NewUser.Password.length == 0}"
+                           ng-model="NewUser.Password">
+                </td>
                 <td>
                     <input class="input"
                            ng-class="{'is-danger': NewUser.FirstName.length == 0}"
@@ -31,6 +43,12 @@
                 </td>
             </tr>
             <tr ng-repeat="user in AllUsers">
+                <td>
+                    {{user.Login}}
+                </td>
+                <td>
+
+                </td>
                 <td>
                     {{user.FirstName}}
                 </td>

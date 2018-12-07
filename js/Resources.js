@@ -8,6 +8,8 @@ function ResourcesController($scope) {
     var that = this;
     $scope.NewUser = {
         UserId: uuid(),
+        Login: "",
+        Password: "",
         FirstName: "",
         LastName: "",
         UserPic: ""
@@ -27,6 +29,8 @@ function ResourcesController($scope) {
             if (user !== null) {
                 $scope.NewUser = {
                     UserId: uuid(),
+                    Login: "",
+                    Password: "",
                     FirstName: "",
                     LastName: "",
                     UserPic: ""
