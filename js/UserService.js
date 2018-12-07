@@ -4,9 +4,10 @@ var Backend = require('./Backend');
 var service = {
     CurrentUser: null,
     AllUsers: [],
+
     LoadCurrentUser: function() {
         return Backend.LoadCurrentUser().then(function(user) {
-            service.CurrentUser = user;
+            //service.CurrentUser = user;
             return user;
         });
     },
