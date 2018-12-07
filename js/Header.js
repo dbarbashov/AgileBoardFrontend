@@ -4,24 +4,23 @@ var fs = require('fs');
 
 module.exports =
     agileBoard.component('abHeader', {
-        controller: ['$scope', function($scope) {
-            $scope.CurrentUser = null;
-            UserService.LoadCurrentUser().then(function (user) {
-                $scope.$apply(function () {
-                    $scope.CurrentUser = user;
-                });
+        controller: ['$rootScope', '$scope', function($rootScope, $scope) {
+
+            $rootScope.$on('updateUser', function (_, user, apply) {
+                if (apply) {
+                    $scope.$apply(function () {
+                        $scope.CurrentUser = user;
+                    })
+                } else
+                $scope.CurrentUser = user;
             });
 
             this.LogOut = function() {
-                $scope.CurrentUser = null;
-                UserService.CurrentUser = null;
-                this.RedirectToLogin();
+                document.getElementById("loginPage").style.display = "block";
+                document.cookie = "agileUser=";
             };
 
-            this.RedirectToLogin = function () {
-                var curAddress = location.href;
-                location.replace(curAddress.replace("index", "login"));
-            };
+
         }],
         template: fs.readFileSync('./templates/header.html')
     });
