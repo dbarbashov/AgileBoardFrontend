@@ -5,9 +5,14 @@ var fs = require('fs');
 module.exports =
     agileBoard.component('abHeader', {
         controller: ['$scope', function($scope) {
-            $scope.CurrentUser = UserService.CurrentUser;
+            $scope.CurrentUser = null;
+            UserService.LoadCurrentUser().then(function (user) {
+                $scope.$apply(function () {
+                    $scope.CurrentUser = user;
+                });
+            });
+
             this.LogOut = function() {
-                console.info("login");
                 $scope.CurrentUser = null;
                 UserService.CurrentUser = null;
                 this.RedirectToLogin();
