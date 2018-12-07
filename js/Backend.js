@@ -183,7 +183,7 @@ var FakeBackend = {
     }
 };
 
-var BackendAddress = "http://localhost:3000/";
+var BackendAddress = "http://agileboard.lkmfwe.com/backend";
 var GetData = function(response) {
     return response.data;
 };
