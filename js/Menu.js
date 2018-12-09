@@ -40,6 +40,10 @@ function MenuController($rootScope, $scope) {
         );
     };
 
+    $rootScope.$on('select-ticket-project', function (e, project) {
+        that.SelectMenuItem('project', project);
+    });
+
     this.SelectMenuItem = function(menuCategory, arg) {
         if (menuCategory === 'project') {
             $rootScope.View = 'project';
