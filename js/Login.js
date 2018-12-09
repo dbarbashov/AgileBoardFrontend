@@ -47,7 +47,6 @@ function LoginController($rootScope, $scope) {
             $scope.Password = "";
             $scope.LoginError = "";
             document.cookie = "agileUser=" + user.Login;
-            console.info(document);
             this.HideLoginPage();
             $rootScope.CurrentUser = user;
             $rootScope.$broadcast("updateUser", user, false);

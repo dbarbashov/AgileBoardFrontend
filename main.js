@@ -11,6 +11,7 @@ var Preloader = require('./js/Preloader');
 var assigneeSelector = require('./js/AssigneeSelector');
 var ganntChart = require('./js/GanntChart');
 var resources = require('./js/Resources');
+var userTickets = require('./js/UserTickets');
 
 Preloader.Show();
 UserService.LoadCurrentUser().then(function(_) {

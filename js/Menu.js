@@ -14,6 +14,9 @@ function MenuController($rootScope, $scope) {
         return Backend.GetProjects().then(
             function(projects) {
                 $scope.Projects = projects;
+                if (projects.length > 0) {
+                    that.SelectMenuItem("project", projects[0]);
+                }
                 $scope.$apply();
             }
         );
@@ -57,6 +60,7 @@ function MenuController($rootScope, $scope) {
                     $scope.View = null;
                     $scope.ActiveProject = null;
                 }
+                $rootScope.$broadcast("updateUser", $rootScope.CurrentUser);
                 return Init();
             }
         });
