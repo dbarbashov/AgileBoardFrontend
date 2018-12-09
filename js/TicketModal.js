@@ -53,6 +53,7 @@ agileBoard.service('TicketModal', ['$rootScope',
                         saveButton.classList.remove('is-loading');
                         _saveCallback(that.Ticket);
                         $rootScope.$broadcast("update-ticket");
+                        $rootScope.$broadcast("updateUser", $rootScope.CurrentUser);
                         that.Hide();
                     } else {
                         that.Hide();

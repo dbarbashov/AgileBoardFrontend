@@ -1,0 +1,12 @@
+<p class="menu-label">
+    My tickets
+</p>
+<ul class="menu-list">
+    <p class="current-user-ticket" ng-if="!UserTickets || UserTickets.length === 0"
+    >No active tickets.</p>
+    <li ng-repeat="userTicket in UserTickets">
+        <a class="current-user-ticket {{ userTicket.TicketId == ActiveUserTicket.TicketId ? 'is-active' : ''}}"
+           ng-click="$ctrl.SelectTicket(userTicket)">{{ userTicket.TicketTitle }}</a>
+
+    </li>
+</ul>

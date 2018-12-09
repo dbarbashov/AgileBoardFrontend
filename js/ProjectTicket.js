@@ -27,6 +27,10 @@ function ProjectTicketController($rootScope, $scope, TicketModal) {
     $rootScope.$on('update-ticket', function() {
         $scope.$apply();
     });
+
+    $rootScope.$on('open-current-user-ticket', function (e, ticket) {
+        that.EnableEditing(ticket);
+    });
 }
 
 module.exports =
