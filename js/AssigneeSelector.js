@@ -4,15 +4,19 @@ var fs = require('fs');
 
 module.exports =
     agileBoard.component('abAssigneeSelector', {
-        controller: ['$scope', function($scope) {
+        controller: ['$scope', '$rootScope', function($scope, $rootScope) {
             var that = this;
 
-            $scope.CurrentUser = UserService.CurrentUser;
-            $scope.AllUsers = UserService.AllUsers;
+            $scope.CurrentUser = $rootScope.CurrentUser;
+            $scope.AllUsers = [];
             $scope.Assignee = null;
             $scope.SelectAssignee = function(user) {
                 that.onAssigneeSelected({user: user});
             };
+
+            UserService.LoadAllUsers().then(function (users) {
+               $scope.AllUsers = users;
+            });
 
             var updateAssignee = function() {
                 $scope.Assignee = null;
