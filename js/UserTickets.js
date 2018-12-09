@@ -35,7 +35,11 @@ function UserTicketsController($rootScope, $scope) {
     });
 
     this.SelectTicket = function (ticket) {
-        $rootScope.$emit('open-current-user-ticket', ticket);
+        var fromProject = $scope.Projects.find(function (project) {
+            return project.ProjectId === ticket.ProjectId;
+        });
+        $rootScope.$broadcast('select-ticket-project', fromProject);
+        setTimeout(function() {$rootScope.$emit('open-current-user-ticket', ticket)}, 100);
     }
 }
 
