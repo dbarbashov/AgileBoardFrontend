@@ -183,6 +183,7 @@ function ProjectController($rootScope, $scope, TicketModal) {
         Backend.DeleteTicket(column.ColumnId, ticket.TicketId).then(function(resp) {
             if (resp === "true") {
                 Init();
+                $rootScope.$broadcast("updateUser", $rootScope.CurrentUser);
             }
         });
     };
